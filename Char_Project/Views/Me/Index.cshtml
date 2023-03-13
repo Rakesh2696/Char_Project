@@ -1,0 +1,120 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        table{
+            text-align:center;margin:auto;margin-top:50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td><label>CountryName:</label></td>
+                <td><input id="txtcountryname" /></td>
+            </tr>
+            <tr>
+                <td><label>ContryCode</label></td>
+                <td><input id="txtcode" /></td>
+                <td hidden="hidden"><input id="txtid"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button id="btnsubmit">Submit</button></td>
+            </tr>
+        </table>
+        <label id="lblmsg" style="color:Red"></label>
+    </div>
+    <div>
+        <table id="tbl2">
+            <tr>
+                <th hidden="hidden">Id</th>
+                <th>countryname</th>
+                <th>countrycode</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td id="tdid" hidden="hidden">@item.Id</td>
+    <td id="tdname">@item.countryName</td>
+    <td id="tdcode">@item.countryCode</td>
+    <td><button id="btnedit">Edit</button></td>
+    <td><button id="btndelete">Delete</button></td>
+</tr>
+            }
+        </table>
+    </div>
+    @*@Html.Partial("Login")
+ @Html.Partial("Login")*@
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnsubmit").click(function () {
+                let newdata = {
+                    countryName: $('#txtcountryname').val(),
+                    countryCode: $('#txtcode').val()
+                }
+                if ($('#btnsubmit').html() == "Submit") {
+                    $.ajax({
+                        type: 'Post',
+                        url: '/Me/CountryData',
+                        data: newdata,
+                        success: function (result) {
+                            if (result == 0) {
+                                $('#lblmsg').html("Saved succesfully...");
+                                $('#lblmsg').css('color', 'green');
+                                location.reload();
+                            }
+                            else {
+                                $('#lblmsg').html("Countryname or code already exist...");
+                                $('#lblmsg').css('color', 'red');
+                            }
+                        },
+                        error: function () {
+                            alert("fail...");
+                        }
+                    })
+                }
+                else if ($('#btnsubmit').html() == "Update") {
+                    let data = {
+                        Id: $('#txtid').val(),
+                        countryName: $('#txtcountryname').val(),
+                        countryCode:$('#txtcode').val()
+                        }
+                    $.ajax({
+                        type: 'Post',
+                        url: '/Me/Edit',
+                        data: data,
+                        success: function () {
+                            $('#lblmsg').html('Updated successfully...');
+                            $('#lblmsg').css('color', 'Green');
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("fail...");
+                        }
+                        })
+                }
+            })
+            $('#tbl2').on('click', '#btnedit', function () {
+                let id = $(this).closest('tr').find('#tdid').text();
+                let name = $(this).closest('tr').find('#tdname').text();
+                let code = $(this).closest('tr').find('#tdcode').text();
+                $('#txtid').val(id);
+                $('#txtcountryname').val(name);
+                $('#txtcode').val(code);
+                $('#btnsubmit').html("Update");
+            })
+        })
+    </script>
+</body>
+</html>
