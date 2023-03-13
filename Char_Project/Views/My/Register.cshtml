@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <style>        h1 {
+            text-align:center;
+        }
+        div {
+            text-align:center;
+        }
+        body{
+            background-color:wheat;
+        }
+    </style>
+</head>
+<body>
+    <div> 
+        <h1>Register Form</h1>
+        <label>Name</label><br />
+        <input  type="text" id="txtname" placeholder="Enter Name"/><br />
+        <label>UserName</label><br />
+        <input  type="text" id="txtUname" placeholder="...Example@gamil...."/><br />
+        <label>MobileNo</label><br />
+        <input type="text" id="txtMnumber" placeholder="Enter mobile number"/><br />
+        <label>Password</label><br />
+        <input  type="text" id="txtPword" placeholder="***********"/><br />
+        <button id="btnreg">Register</button>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnreg').click(function () {
+                let regdata = {
+                   'Name':$('#txtname').val(),
+                   'UserName':$('#txtUname').val(),
+                    'MobileNo':$('#txtMnumber').val(),
+                    'Password':$('#txtPword').val()
+
+                    }
+                $.ajax({
+                    type: 'Post',
+                    url: '/My/Register',
+                    data: regdata,
+                    success: function () {
+                        alert("Register successfully");
+                    },
+                    error: function () {
+                        alert("fail");
+                    }
+
+
+                })
+            })
+
+
+        })
+    </script>
+</body>
+</html>
