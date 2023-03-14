@@ -46,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,8 +123,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\BundleConfig2.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GKController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -149,9 +159,46 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AnsTable.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GK.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GK.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GK.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GK.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GK.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MSreplication_options.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QTable.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spt_fallback_db.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spt_fallback_dev.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spt_fallback_usg.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\spt_monitor.cs">
+      <DependentUpon>GK.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\2.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -160,6 +207,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+<<<<<<< HEAD
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
@@ -182,8 +230,27 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
 
+=======
+    <Content Include="Models\GK.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GK.Context.cs</LastGenOutput>
+      <DependentUpon>GK.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\GK.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GK.edmx</DependentUpon>
+      <LastGenOutput>GK.cs</LastGenOutput>
+    </Content>
+>>>>>>> Ganesh
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\GK.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GK.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\GK.edmx.diagram">
+      <DependentUpon>GK.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -209,6 +276,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+<<<<<<< HEAD
 
     <Content Include="Views\Me\Index.cshtml" />
     <Content Include="Views\Me\Login.cshtml" />
@@ -227,6 +295,13 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
 
+=======
+    <Content Include="Views\GK\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
+>>>>>>> Ganesh
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -240,6 +315,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
