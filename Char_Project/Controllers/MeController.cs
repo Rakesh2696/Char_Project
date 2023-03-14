@@ -70,5 +70,22 @@ namespace Char_Project.Controllers
             }
             return Json(result,JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult Delete(int id)
+        {
+            decimal result = 0;
+            try
+            {
+                var record = entities1.countries.Where(l => l.Id == id).SingleOrDefault();
+                entities1.countries.Remove(record);
+                entities1.SaveChanges();
+                result = 1;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return Json(result);
+        }
     }
 }

@@ -10,8 +10,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <style>
-        table{
-            text-align:center;margin:auto;margin-top:50px;
+        table {
+            text-align: center;
+            margin: auto;
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -43,18 +45,18 @@
             </tr>
             @foreach (var item in Model)
             {
-<tr>
-    <td id="tdid" hidden="hidden">@item.Id</td>
-    <td id="tdname">@item.countryName</td>
-    <td id="tdcode">@item.countryCode</td>
-    <td><button id="btnedit">Edit</button></td>
-    <td><button id="btndelete">Delete</button></td>
-</tr>
+                <tr>
+                    <td id="tdid" hidden="hidden">@item.Id</td>
+                    <td id="tdname">@item.countryName</td>
+                    <td id="tdcode">@item.countryCode</td>
+                    <td><button id="btnedit">Edit</button></td>
+                    <td><button id="btndelete">Delete</button></td>
+                </tr>
             }
         </table>
     </div>
     @*@Html.Partial("Login")
- @Html.Partial("Login")*@
+        @Html.Partial("Login")*@
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script>
         $(document).ready(function () {
@@ -88,8 +90,8 @@
                     let data = {
                         Id: $('#txtid').val(),
                         countryName: $('#txtcountryname').val(),
-                        countryCode:$('#txtcode').val()
-                        }
+                        countryCode: $('#txtcode').val()
+                    }
                     $.ajax({
                         type: 'Post',
                         url: '/Me/Edit',
@@ -102,6 +104,28 @@
                         error: function () {
                             alert("fail...");
                         }
+                    })
+                }
+                else if ($('#btnsubmit').html()=="Delete") {
+                    let data = {
+                        Id: $('#txtid').val()
+                    }
+                    $.ajax({
+                        type: 'Post',
+                        url: '/Me/Delete',
+                        data: data,
+                        success: function (result) {
+                            if (result == 1) {
+                                alert("Deleted successfully...");
+                                location.reload();
+                            }
+                            else {
+                                alert("Can't be deleted...");
+                            }
+                        },
+                        error: function(){
+                            alert("Failed...");
+                            }
                         })
                 }
             })
@@ -113,6 +137,15 @@
                 $('#txtcountryname').val(name);
                 $('#txtcode').val(code);
                 $('#btnsubmit').html("Update");
+            })
+            $('#tbl2').on('click', '#btndelete', function () {
+                let id = $(this).closest('tr').find('#tdid').text();
+                let name = $(this).closest('tr').find('#tdname').text();
+                let code = $(this).closest('tr').find('#tdcode').text();
+                $('#txtid').val(id);
+                $('#txtcountryname').val(name);
+                $('#txtcode').val(code);
+                $('#btnsubmit').html("Delete");
             })
         })
     </script>
