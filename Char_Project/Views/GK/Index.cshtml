@@ -64,27 +64,65 @@
     </style>
 </head>
 <body style="background-image: url('../../content/2.jpg');">
-    
-        <div class="form">
-            <h2 style="color: brown;">Git Hub Registration</h2>
-            <form>
-                <p class="para"><input type="text" class="text" placeholder="First Name:" id="txtfirstname" ></p>
-                <p><input type="text" class="text" placeholder="Last Name:" id="txtlastname"></p>
-                <p><input type="text" class="text" placeholder="E-mail:" id="txtemail" ></p>
-                <p><input type="text" class="text" placeholder="Mobile No:" id="txtmNo" ></p>
+
+    <div class="form">
+        <h2 style="color: brown;">Git Hub Registration</h2>
+        <form>
+            <p class="para"><input type="text" class="text" placeholder="First Name:" id="txtfirstname"></p>
+            <p><input type="text" class="text" placeholder="Last Name:" id="txtlastname"></p>
+            <p><input type="text" class="text" placeholder="E-mail:" id="txtemail"></p>
+            <p><input type="text" class="text" placeholder="Mobile No:" id="txtmNo"></p>
 
 
-                <select id="drpState"  class="dropdown">
-                    <option value="">Select State</option>
-                    <option value="AndhraPradesh">AndhraPradesh</option>
-                    <option value="Telangana">Telangana</option>
-                    <option value="Tamilnadu">Tamilnadu</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Delhi">Delhi</option>
-                </select>
+            <select id="drpState" class="dropdown">
+                <option value="">Select State</option>
+                <option value="AndhraPradesh">AndhraPradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tamilnadu">Tamilnadu</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Delhi">Delhi</option>
+            </select>
 
-                <button type="button" class="button" onclick="MyRegister()">Submit</button>
-            </form>
-       </div>
+            <button type="button" class="button" id="btnSubmit">Submit</button>
+        </form>
+        <div id="lblMess" style="color: aqua;"></div>
+        <label id="lblSucmess" style="color: green;"></label>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            let Fname;
+            let Lname;
+            let Email;
+            let MNo;
+            let State;
+            $('#btnSubmit').click(function () {
+                Fname = $('#txtfirstname').val();
+                Lname = $('#txtlastname').val();
+                Email = $('#txtemail').val();
+                MNo = $('#txtmNo').val();
+                State = $('#drpState').val();
+                if (Fname == '') {
+                    $('#lblMess').html("Please Enter First Name...")
+                }
+                else if (Lname == '') {
+                    $('#lblMess').html("Please Enter Last Name...")
+                }
+                else if (Email == '') {
+                    $('#lblMess').html("Please Enter Email...")
+                }
+                else if (MNo == '') {
+                    $('#lblMess').html("Please Enter Mobile Num...")
+                }
+                else if (State == '') {
+                    $('#lblMess').html("Please Enter State...")
+                }
+                else {
+                    $('#lblMess').html("Saved Successfully...")
+                }
+            })
+        });
+    </script>
 </body>
 </html>
