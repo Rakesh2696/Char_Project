@@ -14,18 +14,39 @@
             text-align: center;
             margin: auto;
             margin-top: 50px;
+            border-color: white;
+        }
+        body {
+            background-image: url('../../content/timebgms.jpg');
+            background-size:cover;
+        }
+        lablel{
+            color:white;
+        }
+        tr {
+            color: white;
+        }
+        input{
+           color:black;
+           text-align:center;
+        }
+       #tbl2{
+           background-color:black;
+        }
+        #btnsubmit {
+            background-color:white;color:black;border:none;
         }
     </style>
 </head>
 <body>
     <div>
-        <table>
+        <table width="200" height="100">
             <tr>
                 <td><label>CountryName:</label></td>
                 <td><input id="txtcountryname" /></td>
             </tr>
             <tr>
-                <td><label>ContryCode</label></td>
+                <td><label>ContryCode:</label></td>
                 <td><input id="txtcode" /></td>
                 <td hidden="hidden"><input id="txtid"></td>
             </tr>
@@ -37,11 +58,13 @@
         <label id="lblmsg" style="color:Red"></label>
     </div>
     <div>
-        <table id="tbl2">
+        <table id="tbl2" width="500" height="300" border="1">
             <tr>
                 <th hidden="hidden">Id</th>
                 <th>countryname</th>
                 <th>countrycode</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -49,8 +72,8 @@
                     <td id="tdid" hidden="hidden">@item.Id</td>
                     <td id="tdname">@item.countryName</td>
                     <td id="tdcode">@item.countryCode</td>
-                    <td><button id="btnedit">Edit</button></td>
-                    <td><button id="btndelete">Delete</button></td>
+                    <td><button id="btnedit" style="border: none; color: white; background-color: black;">Edit</button></td>
+                    <td><button id="btndelete" style="border: none; color: white;background-color:black;">Delete</button></td>
                 </tr>
             }
         </table>
