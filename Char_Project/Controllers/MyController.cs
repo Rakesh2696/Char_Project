@@ -38,7 +38,7 @@ namespace Char_Project.Controllers
 
         }
         [HttpPost]
-       public JsonResult login(login logindata)
+       public JsonResult login (login logindata)
         {
             bool result = false;
           login log=  RockEntities.logins.Where(l => l.UserName == logindata.UserName && l.Password == logindata.Password).FirstOrDefault();
