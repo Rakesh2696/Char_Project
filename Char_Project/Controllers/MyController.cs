@@ -53,6 +53,9 @@ namespace Char_Project.Controllers
         {
             return View();
         }
-       
+      public ActionResult Home() 
+        {
+            return View();
+        }
     }
 }

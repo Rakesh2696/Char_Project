@@ -211,6 +211,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\My\login.cshtml" />
     <Content Include="Views\My\Register.cshtml" />
+    <Content Include="Views\My\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
